@@ -30,3 +30,8 @@ Este directorio contiene todo el código de base que se entrega para el funciona
 -Test
 Este directorio contiene las pruebas realizadas a los TADs, Estructuras de Datos y Algoritmos.
 
+Grupo 7
+* Hernán Buitrago/201512807/hf.buitrago10
+* Karen Evens/201718885/kt.evens
+* Wilton Martinez/202014514/w.martinezh
+
