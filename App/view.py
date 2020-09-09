@@ -37,9 +37,8 @@ operación seleccionada.
 # ___________________________________________________
 #  Ruta a los archivos
 # ___________________________________________________
-
-
-
+csvcasting = 'MoviesCastingRaw-small.csv'
+csvmovies = 'SmallMoviesDetailsCleaned.csv'
 
 
 # ___________________________________________________
@@ -47,9 +46,57 @@ operación seleccionada.
 #  respuesta.  La vista solo interactua con
 #  el controlador.
 # ___________________________________________________
+def mostrarCarga(lst):
+    primeraPelicula = controller.darPrimero(lst)
+    ultimaPelicula = controller.darUltimo(lst)
 
+    print("El total de peliculas cargadas fue de: " + str(controller.darTamaño(lst)) + "\n"
+          + "Primera pelicula: \n"
+          + "Titulo: " + primeraPelicula['original_title']
+          + " Fecha de estreno: " + primeraPelicula['release_date']
+          + " Votación promedio: " + primeraPelicula['vote_average']
+          + " Número de votos: " + primeraPelicula['vote_count']
+          + " Idioma original: " + primeraPelicula['original_language'] + "\n"
 
+          + "Ultima pelicula: \n"
+          + "Titulo: " + ultimaPelicula['original_title'] +
+          " Fecha de estreno: " + ultimaPelicula['release_date']
+          + " Votación promedio: " + ultimaPelicula['vote_average']
+          + " Número de votos: " + ultimaPelicula['vote_count']
+          + " Idioma original: " + ultimaPelicula['original_language']
+          )
 
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
+
+
+def printMenu():
+    """
+    Imprime el menu de opciones
+    """
+    print("\nBienvenido")
+    print("1- Cargar Peliculas")
+    print("0- Salir")
+
+
+def main():
+    lstmovies = controller.crearCatalogo()
+    lstcasting = controller.crearCatalogo()
+    while True:
+        printMenu()  # imprimir el menu de opciones en consola
+
+        # leer opción ingresada
+        inputs = input('Seleccione una opción para continuar\n')
+        if len(inputs) > 0:
+            if int(inputs[0]) == 1:  # opcion 1
+                controller.loadCSVFile(lstmovies, csvmovies)
+                controller.loadCSVFile(lstcasting, csvcasting)
+                mostrarCarga(lstmovies)
+            elif int(inputs[0]) == 0:  # opcion 0, salir
+                sys.exit(0)
+
+
+# Nos permite detectar si el archivo es un modulo que fue importado o no.
+if __name__ == "__main__":
+    main()
