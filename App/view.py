@@ -38,14 +38,19 @@ operación seleccionada.
 #  Ruta a los archivos
 # ___________________________________________________
 
+
 listCasting = 'MoviesCastingRaw-small.csv'
 listMovies = 'SmallMoviesDetailsCleaned.csv'
+
 
 # ___________________________________________________
 #  Funciones para imprimir la inforamación de
 #  respuesta.  La vista solo interactua con
 #  el controlador.
 # ___________________________________________________
+def mostrarCarga(lst):
+    primeraPelicula = controller.darPrimero(lst)
+    ultimaPelicula = controller.darUltimo(lst)
 
 def printInfo():
     print("La primera pelicula cargada es: " + str(controller.darPrimero(movies)['original_title']))
@@ -60,6 +65,7 @@ def printInfo():
     print("El numero de votos fue: " + str(controller.darUltimo(movies)['vote_count']))
     print("El idioma original es: " + str(controller.darUltimo(movies)['original_language']))
     
+
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
@@ -86,4 +92,9 @@ while True:
         printInfo()
     else:
         sys.exit(0)
-sys.exit(0)
+
+       
+      
+if __name__ == '__main__':
+  main()
+  
