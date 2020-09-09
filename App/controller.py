@@ -38,50 +38,38 @@ recae sobre el controlador.
 # ___________________________________________________
 
 
-def initCatalog():
-    """
-    Llama la funcion de inicializacion del catalogo del modelo.
-    """
-    # catalog es utilizado para interactuar con el modelo
-    catalog = model.newCatalog()
-    return catalog
+def crearCatalogo():
+    return model.crear("ARRAY_LIST", model.compareRecordIds)
 
 
 # ___________________________________________________
 #  Funciones para la carga de datos y almacenamiento
 #  de datos en los modelos
 # ___________________________________________________
-
-
-def loadData(catalog, movies_casting, movies_details):
-    """
-    Carga los datos de los archivos en el modelo
-    """
-    loadarchive(catalog, movies_casting, True)
-    loadarchive(catalog, movies_details, False)
-
-
-def MoviesSize(catalog):
-
-    return model.MoviesSize(catalog)
-
-
-def CastingSize(catalog):
-
-    return model.CastingSize(catalog)
-
-
-def loadarchive(catalog, movies_data, escasting):
-    movies_data = cf.data_dir + movies_data
+def loadCSVFile(lst, file):
     dialect = csv.excel()
     dialect.delimiter = ";"
+
     try:
-        with open(movies_data, encoding="utf-8") as csvfile:
-            spamreader = csv.DictReader(csvfile, dialect=dialect)
-            for row in spamreader:
-                if escasting == False:  # si es False carga el archivo movies_details
-                    model.addpelicula(row)
-                else:  # si es True carga el archivo movies_casting
-                    model.addcasting(row)
+        with open(cf.data_dir + file, encoding="utf-8") as csvfile:
+            row = csv.DictReader(csvfile, dialect=dialect)
+            for elemento in row:
+                model.añadirAlFinal(lst, elemento)
     except:
-        print("Se presento un error en la carga del archivo")
+        print("Hubo un error con la carga del archivo")
+    return lst
+
+
+# ___________________________________________________
+#  Otras funciones
+# ___________________________________________________
+def darPrimero(lst):
+    return model.darPrimero(lst)
+
+
+def darUltimo(lst):
+    return model.darUltimo(lst)
+
+
+def darTamaño(lst):
+    return model.darTamaño(lst)
