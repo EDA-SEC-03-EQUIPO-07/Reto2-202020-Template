@@ -38,9 +38,8 @@ operación seleccionada.
 #  Ruta a los archivos
 # ___________________________________________________
 
-
-
-
+listCasting = 'MoviesCastingRaw-small.csv'
+listMovies = 'SmallMoviesDetailsCleaned.csv'
 
 # ___________________________________________________
 #  Funciones para imprimir la inforamación de
@@ -48,8 +47,43 @@ operación seleccionada.
 #  el controlador.
 # ___________________________________________________
 
+def printInfo():
+    print("La primera pelicula cargada es: " + str(controller.darPrimero(movies)['original_title']))
+    print("La fecha de estreno fue: " + str(controller.darPrimero(movies)['release_date']))
+    print("El promedio de votación fue: " + str(controller.darPrimero(movies)['vote_average']))
+    print("El numero de votos fue: " + str(controller.darPrimero(movies)['vote_count']))
+    print("El idioma original es: " + str(controller.darPrimero(movies)['original_language']))
 
-
+    print("La última pelicula cargada es: " + str(controller.darUltimo(movies)['original_title']))
+    print("La fecha de estreno fue: " + str(controller.darUltimo(movies)['release_date']))
+    print("El promedio de votación fue: " + str(controller.darUltimo(movies)['vote_average']))
+    print("El numero de votos fue: " + str(controller.darUltimo(movies)['vote_count']))
+    print("El idioma original es: " + str(controller.darUltimo(movies)['original_language']))
+    
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
+
+def printMenu():
+    print("Bienvenido")
+    print("1- Inicializar catálogo")
+    print("2- Cargar peliculas en el catálogo")
+    print("0- Salir")
+
+while True:
+    printMenu()
+    inputs = input('Seleccione una opción para continuar\n')
+    if int(inputs[0]) == 1:
+        print("Inicializando Catálogo ....")
+        movies = controller.crearCatalogo()
+        casting = controller.crearCatalogo()
+        print("Catálogo inicializado")
+    elif int(inputs[0]) == 2:
+        print("Cargando información de los archivos ....")
+        controller.loadCSVFile(movies, listMovies)
+        controller.loadCSVFile(casting, listCasting)
+        print("Peliculas cargadas: " + str(controller.darTamaño(movies)))
+        printInfo()
+    else:
+        sys.exit(0)
+sys.exit(0)
