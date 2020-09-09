@@ -48,9 +48,6 @@ listMovies = 'SmallMoviesDetailsCleaned.csv'
 #  respuesta.  La vista solo interactua con
 #  el controlador.
 # ___________________________________________________
-def mostrarCarga(lst):
-    primeraPelicula = controller.darPrimero(lst)
-    ultimaPelicula = controller.darUltimo(lst)
 
 def printInfo():
     print("La primera pelicula cargada es: " + str(controller.darPrimero(movies)['original_title']))
