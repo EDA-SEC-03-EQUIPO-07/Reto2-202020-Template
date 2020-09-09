@@ -77,7 +77,7 @@ while True:
         print("Inicializando Catálogo ....")
         movies = controller.crearCatalogo()
         casting = controller.crearCatalogo()
-        print("Catálogo inicializado")
+        print("Catalogo inicializado")
     elif int(inputs[0]) == 2:
         print("Cargando información de los archivos ....")
         controller.loadCSVFile(movies, listMovies)
