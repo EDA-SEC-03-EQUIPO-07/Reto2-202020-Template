@@ -38,9 +38,6 @@ operación seleccionada.
 #  Ruta a los archivos
 # ___________________________________________________
 
-movies_casting = "MoviesCastingRaw-small.csv"
-movies_details = "SmallMoviesDetailsCleaned.csv"
-
 
 # ___________________________________________________
 #  Funciones para imprimir la inforamación de
@@ -52,62 +49,3 @@ movies_details = "SmallMoviesDetailsCleaned.csv"
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
-def printMenu():
-    print("Bienvenido")
-    print("1- Inicializar Catálogo")
-    print("2- Cargar información de peliculas")
-    print("3- Descubrir productoras de cine")
-    print("4- Conocer a un director")
-    print("5- Conocer a un actor")
-    print("6- Entender un género cinematográfico")
-    print("7- Encontrar películas por país")
-    print("0- Salir")
-
-
-"""
-Menu principal
-"""
-while True:
-    printMenu()
-    inputs = input('Seleccione una opción para continuar\n')
-
-    if int(inputs[0]) == 1:
-        print("Inicializando Catálogo ....")
-        # cont es el controlador que se usará de acá en adelante
-        cont = controller.initCatalog()
-
-    elif int(inputs[0]) == 2:
-        print("Cargando información de los archivos ....")
-        controller.loadData(cont, movies_casting, movies_details)
-        print('Peliculas cargadas: ' + str(controller.MovieSize(cont)))
-        print('Peliculas cargadas: ' + str(controller.CastingSize(cont)))
-        #print('Géneros cargados: ' + str(controller.tagsSize(cont)))
-
-    elif int(inputs[0]) == 3:
-        name = input("Nombre de la productora de cine: ")
-        #books = controller.getBooksYear(cont, int(number))
-        # ·printBooksbyYear(books)
-
-    elif int(inputs[0]) == 4:
-        director_name = input("Nombre del director: ")
-        #authorinfo = controller.getBooksByAuthor(cont, authorname)
-        # printAuthorData(authorinfo)
-
-    elif int(inputs[0]) == 5:
-        actor_name = input("Nombre del actor: ")
-        #books = controller.getBooksByTag(cont, label)
-        # printBooksbyTag(books)
-
-    elif int(inputs[0]) == 6:
-        name = input("Nombre del genero cinematográfico: ")
-        #books = controller.getBooksByTag(cont, label)
-        # printBooksbyTag(books)
-
-    elif int(inputs[0]) == 7:
-        country_name = input("Nombre del país: ")
-        #books = controller.getBooksByTag(cont, label)
-        # printBooksbyTag(books)
-
-    else:
-        sys.exit(0)
-sys.exit(0)
