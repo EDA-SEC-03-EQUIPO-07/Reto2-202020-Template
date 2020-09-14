@@ -36,14 +36,50 @@ es decir contiene los modelos con los datos en memoria
 # -----------------------------------------------------
 
 
+def crear(tipo, comparador):
+    return lt.newList(tipo, comparador)
+
 # Funciones para agregar informacion al catalogo
 
 
+def añadir(lst, element):
+    lt.addFirst(lst, element)
+
+
+def añadirAlFinal(lst, element):
+    lt.addLast(lst, element)
+
+
+def insertarElemento(lst, elemento, pos):
+    lt.insertElement(lst, elemento, pos)
 # ==============================
 # Funciones de consulta
 # ==============================
 
 
+def darPrimero(lst):
+    return lt.firstElement(lst)
+
+
+def darUltimo(lst):
+    return lt.lastElement(lst)
+
+
+def darElemento(lst, pos):
+    return lt.getElement(lst, pos)
+
+
+def darTamaño(lst):
+    return lt.size(lst)
+
 # ==============================
 # Funciones de Comparacion
 # ==============================
+
+
+def compareRecordIds(recordA, recordB):
+    if int(recordA['id']) == int(recordB['id']):
+        return 0
+    elif int(recordA['id']) > int(recordB['id']):
+        return 1
+    return - 1
