@@ -71,6 +71,17 @@ def printInfo():
     print("El idioma original es: " +
           str(controller.darUltimo(movies)['original_language']))
 
+
+def printBooksbyTag(movies):
+    """
+    Imprime los libros que han sido clasificados con
+    una etiqueta
+    """
+    print('Se encontraron: ' + str(lt.size(movies)) + ' peliculas')
+    iterator = it.newIterator(movies)
+    while it.hasNext(iterator):
+        movies = it.next(iterator)
+        print(movies["original_title"])
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
@@ -99,6 +110,7 @@ while True:
         controller.loadCSVFile(casting, listCasting)
         print("Peliculas cargadas: " + str(controller.darTamaño(movies)))
         printInfo()
+
     else:
         sys.exit(0)
 

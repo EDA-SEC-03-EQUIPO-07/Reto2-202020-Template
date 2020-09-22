@@ -73,3 +73,28 @@ def darUltimo(lst):
 
 def darTamaño(lst):
     return model.darTamaño(lst)
+
+
+def CompanyProduction(catalog, producer_name):
+    producer_info = model.getMoviesByProducer(catalog, producer_name)
+    return producer_info
+
+
+def moviesbydirector(catalog, director_name):
+    director_info = model.getMoviesByDirector(catalog, director_name)
+    return director_info
+
+
+def moviesbyactor(catalog, actor_name):
+    actor_info = model.getMoviesByActor(catalog, actor_name)
+    return actor_info
+
+
+def moviesbygenre(catalog, genre_name):
+    genre_info = model.getMoviesByGenre(catalog, genre_name)
+    return genre_info
+
+
+def moviesbycountry(catalog, country_name):
+    country_info = model.getMoviesByCountry(catalog, country_name)
+    return country_info
