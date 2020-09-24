@@ -36,14 +36,14 @@ recae sobre el controlador.
 
 
 def crearCatalogo():
-    return model.crear("ARRAY_LIST", model.compareRecordIds)
+    return model.newCatalog()
 
 
 # ___________________________________________________
 #  Funciones para la carga de datos y almacenamiento
 #  de datos en los modelos
 # ___________________________________________________
-def loadCSVFile(lst, file):
+def loadMovies(catolog, file):
     dialect = csv.excel()
     dialect.delimiter = ";"
 
@@ -51,11 +51,24 @@ def loadCSVFile(lst, file):
         with open(cf.data_dir + file, encoding="utf-8") as csvfile:
             row = csv.DictReader(csvfile, dialect=dialect)
             for elemento in row:
-                model.añadirAlFinal(lst, elemento)
+                model.cargarPeliculas(catolog, elemento)
     except:
         print("Hubo un error con la carga del archivo")
-    return lst
+    return catolog
 
+
+def loadCasting(catolog, file):
+    dialect = csv.excel()
+    dialect.delimiter = ";"
+
+    try:
+        with open(cf.data_dir + file, encoding="utf-8") as csvfile:
+            row = csv.DictReader(csvfile, dialect=dialect)
+            for elemento in row:
+                model.cargarCasting(catolog, elemento)
+    except:
+        print("Hubo un error con la carga del archivo")
+    return catolog
 
 # ___________________________________________________
 #  Otras funciones
