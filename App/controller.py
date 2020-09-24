@@ -75,7 +75,7 @@ def darTamaño(lst):
     return model.darTamaño(lst)
 
 
-def CompanyProduction(catalog, producer_name):
+def moviesByProductionCompany(catalog, producer_name):
     producer_info = model.getMoviesByProducer(catalog, producer_name)
     return producer_info
 
