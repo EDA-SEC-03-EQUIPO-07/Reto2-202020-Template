@@ -99,7 +99,7 @@ def main():
                 controller.loadCasting(catalogo, csvcasting)
             if int(inputs[0]) == 2:  # opcion 2
                 criteria = str(input('Ingrese el nombre de la productora\n'))
-                print(controller.CompanyProduction(catalogo, criteria))
+                print(controller.moviesByProductionCompany(catalogo, criteria))
             if int(inputs[0]) == 3:  # opcion 3
                 criteria = str(input('Ingrese el nombre del director\n'))
                 print(controller.moviesbydirector(catalogo, criteria))

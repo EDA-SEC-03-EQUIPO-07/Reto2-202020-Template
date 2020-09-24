@@ -20,6 +20,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+import config as cf
+from App import model
+import csv
+
 
 """
 El controlador se encarga de mediar entre la vista y el modelo.
