@@ -37,53 +37,78 @@ operación seleccionada.
 # ___________________________________________________
 #  Ruta a los archivos
 # ___________________________________________________
+csvcasting = 'MoviesCastingRaw-small.csv'
+csvmovies = 'SmallMoviesDetailsCleaned.csv'
 
-listCasting = 'MoviesCastingRaw-small.csv'
-listMovies = 'SmallMoviesDetailsCleaned.csv'
 
 # ___________________________________________________
 #  Funciones para imprimir la inforamación de
 #  respuesta.  La vista solo interactua con
 #  el controlador.
 # ___________________________________________________
+def mostrarCarga(lst):
+    primeraPelicula = controller.darPrimero(lst)
+    ultimaPelicula = controller.darUltimo(lst)
 
-def printInfo():
-    print("La primera pelicula cargada es: " + str(controller.darPrimero(movies)['original_title']))
-    print("La fecha de estreno fue: " + str(controller.darPrimero(movies)['release_date']))
-    print("El promedio de votación fue: " + str(controller.darPrimero(movies)['vote_average']))
-    print("El numero de votos fue: " + str(controller.darPrimero(movies)['vote_count']))
-    print("El idioma original es: " + str(controller.darPrimero(movies)['original_language']))
+    print("El total de peliculas cargadas fue de: " + str(controller.darTamaño(lst)) + "\n"
+          + "Primera pelicula: \n"
+          + "Título: " + primeraPelicula['original_title']
+          + "Fecha de estreno: " + primeraPelicula['release_date']
+          + "Votación promedio: " + primeraPelicula['vote_average']
+          + "Número de votos: " + primeraPelicula['vote_count']
+          + "Idioma original: " + primeraPelicula['original_language'] + "\n"
 
-    print("La última pelicula cargada es: " + str(controller.darUltimo(movies)['original_title']))
-    print("La fecha de estreno fue: " + str(controller.darUltimo(movies)['release_date']))
-    print("El promedio de votación fue: " + str(controller.darUltimo(movies)['vote_average']))
-    print("El numero de votos fue: " + str(controller.darUltimo(movies)['vote_count']))
-    print("El idioma original es: " + str(controller.darUltimo(movies)['original_language']))
-    
+          + "Ultima pelicula: \n"
+          + "Titulo: " + ultimaPelicula['original_title'] +
+          " Fecha de estreno: " + ultimaPelicula['release_date']
+          + "Votación promedio: " + ultimaPelicula['vote_average']
+          + "Número de votos: " + ultimaPelicula['vote_count']
+          + "Idioma original: " + ultimaPelicula['original_language']
+          )
+
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
 
+
 def printMenu():
-    print("Bienvenido")
-    print("1- Inicializar catálogo")
-    print("2- Cargar peliculas en el catálogo")
+    """
+    Imprime el menu de opciones
+    """
+    print("\nBienvenido")
+    print("1- Cargar Peliculas")
+    print("2- Descubrir productoras de cine")
+    print("3- Conocer a un director")
+    print("4- Conocer a un actor")
+    print("5- Entender un género cinematográfico")
+    print("6- Encontrar películas por país")
     print("0- Salir")
 
-while True:
-    printMenu()
-    inputs = input('Seleccione una opción para continuar\n')
-    if int(inputs[0]) == 1:
-        print("Inicializando Catálogo ....")
-        movies = controller.crearCatalogo()
-        casting = controller.crearCatalogo()
-        print("Catalogo inicializado")
-    elif int(inputs[0]) == 2:
-        print("Cargando información de los archivos ....")
-        controller.loadCSVFile(movies, listMovies)
-        controller.loadCSVFile(casting, listCasting)
-        print("Peliculas cargadas: " + str(controller.darTamaño(movies)))
-        printInfo()
-    else:
-        sys.exit(0)
-sys.exit(0)
+
+def main():
+    catalogo = None
+    while True:
+        printMenu()
+        inputs = input('Seleccione una opción para continuar\n')
+        if len(inputs) > 0:
+            if int(inputs[0]) == 1:
+                catalogo = controller.crearCatalogo()
+                controller.loadMovies(catalogo, csvmovies)
+                controller.loadCasting(catalogo, csvcasting)
+            if int(inputs[0]) == 2:
+                criteria = str(input('Ingrese el nombre de la productora\n'))
+                print(controller.moviesByProductionCompany(catalogo, criteria))
+            if int(inputs[0]) == 3:
+                criteria = str(input('Ingrese el nombre del director\n'))
+                print(controller.moviesbydirector(catalogo, criteria))
+            if int(inputs[0]) == 4:
+                criteria = str(input('Ingrese el nombre del actor\n'))
+                print(controller.moviesbyactor(catalogo, criteria))
+            if int(inputs[0]) == 5:
+                criteria = str(input('Ingrese el genero\n'))
+                print(controller.moviesbygenre(catalogo, criteria))
+            if int(inputs[0]) == 6:
+                criteria = str(input('Ingrese el pais\n'))
+                print(controller.moviesbycountry(catalogo, criteria))
+            elif int(inputs[0]) == 0:
+                sys.exit(0)
